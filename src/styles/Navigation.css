@@ -1,0 +1,43 @@
+:root {
+  --bg: #f7f1ec;
+  --text: #6b4f4f;
+  --pink: #f4c2d7;
+  --heading: #d9a5b3;
+  --border: rgba(217, 165, 179, 0.45);
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--heading);
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+}
+
+.nav a:hover,
+.nav a.active,
+.nav a[aria-current="page"] {
+  background: rgba(244, 194, 215, 0.45);
+  color: var(--text);
+}
+
+@media (max-width: 680px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0 2px;
+  }
+}

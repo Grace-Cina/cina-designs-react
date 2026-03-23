@@ -1,0 +1,29 @@
+:root {
+  --bg: #f7f1ec;
+  --text: #6b4f4f;
+  --pink: #f4c2d7;
+  --heading: #d9a5b3;
+  --border: rgba(217, 165, 179, 0.45);
+  --wrap: min(1150px, 94vw);
+}
+
+.header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  width: var(--wrap);
+  margin: 0 auto;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.logo {
+  height: 56px;
+  width: auto;
+  display: block;
+}
