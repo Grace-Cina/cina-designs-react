@@ -6,8 +6,36 @@ import ornaments from '../images/ornaments.jpg';
 import monthlyMilestones from '../images/monthly-milestones.jpg';
 import cuttingBoards from '../images/cutting-boards.jpg';
 import cinaEvent from '../images/cina-event.jpg';
+import OurProducts from '../components/OurProducts';
 
 function Home() {
+  const homeProducts = [
+    {
+      id: 1,
+      image: wreathSash,
+      title: 'Wreath Sashes',
+      extraClass: ''
+    },
+    {
+      id: 2,
+      image: ornaments,
+      title: 'Ornaments',
+      extraClass: ''
+    },
+    {
+      id: 3,
+      image: monthlyMilestones,
+      title: 'Monthly Milestones',
+      extraClass: 'milestones'
+    },
+    {
+      id: 4,
+      image: cuttingBoards,
+      title: 'Engraved Cutting Boards',
+      extraClass: ''
+    }
+  ];
+
   return (
     <main>
       <section className="hero banner-hero">
@@ -49,53 +77,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="wrap">
-          <h2 className="center">Our Products</h2>
-
-          <div className="grid-4">
-            <div className="card-item">
-              <div
-                className="card-img"
-                style={{ backgroundImage: `url(${wreathSash})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Wreath Sashes</h3>
-              </div>
-            </div>
-
-            <div className="card-item">
-              <div
-                className="card-img"
-                style={{ backgroundImage: `url(${ornaments})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Ornaments</h3>
-              </div>
-            </div>
-
-            <div className="card-item">
-              <div
-                className="card-img milestones"
-                style={{ backgroundImage: `url(${monthlyMilestones})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Monthly Milestones</h3>
-              </div>
-            </div>
-
-            <div className="card-item">
-              <div
-                className="card-img"
-                style={{ backgroundImage: `url(${cuttingBoards})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Engraved Cutting Boards</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <OurProducts products={homeProducts} />
 
       <section className="hero" style={{ minHeight: '280px' }}>
         <div

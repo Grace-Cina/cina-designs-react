@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Gallery.css';
+import FeaturedDesigns from '../components/FeaturedDesigns';
 
 import thread from '../images/thread.jpg';
 import space from '../images/space.jpg';
@@ -13,6 +15,42 @@ import flowerHolder from '../images/flower-holder.jpg';
 import boo from '../images/boo.jpg';
 
 function Gallery() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const galleryItems = [
+    { id: 1, image: space, alt: 'Monthly milestone ornaments' },
+    { id: 2, image: ornament, alt: 'Wood milestone ornaments' },
+    { id: 3, image: recipe, alt: 'Kitchen measurement cutting board' },
+    { id: 4, image: wood, alt: 'Family name wood sign' },
+    { id: 5, image: houseDivided, alt: 'House divided decor' },
+    { id: 6, image: bunny, alt: 'Wreath sash with bunny' },
+    { id: 7, image: hairBrush, alt: 'Personalized hair brush' },
+    { id: 8, image: flowerHolder, alt: 'Welcome flower box' },
+    { id: 9, image: boo, alt: 'Boo sweatshirt' }
+  ];
+
+  const openLightbox = (item) => {
+    setSelectedImage(item);
+  };
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <main>
       <section className="hero">
@@ -29,50 +67,29 @@ function Gallery() {
         </div>
       </section>
 
-      <section className="section center gallery-featured">
-        <div className="wrap">
-          <h2>Featured Designs</h2>
-          <p className="sub">A curated look at some of our favorite custom pieces.</p>
+      <FeaturedDesigns items={galleryItems} onImageClick={openLightbox} />
 
-          <div className="gallery-grid">
-            <Link to="/contact">
-              <img src={space} alt="Monthly milestone ornaments" />
-            </Link>
-
-            <a href="/">
-              <img src={ornament} alt="Wood milestone ornaments" />
-            </a>
-
-            <a href="/">
-              <img src={recipe} alt="Kitchen measurement cutting board" />
-            </a>
-
-            <a href="/">
-              <img src={wood} alt="Family name wood sign" />
-            </a>
-
-            <a href="/">
-              <img src={houseDivided} alt="House divided decor" />
-            </a>
-
-            <a href="/">
-              <img src={bunny} alt="Wreath sash with bunny" />
-            </a>
-
-            <a href="/">
-              <img src={hairBrush} alt="Personalized hair brush" />
-            </a>
-
-            <a href="/">
-              <img src={flowerHolder} alt="Welcome flower box" />
-            </a>
-
-            <a href="/">
-              <img src={boo} alt="Boo sweatshirt" />
-            </a>
+      {selectedImage && (
+        <div className="lightbox" onClick={closeLightbox}>
+          <div
+            className="lightbox-content"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="lightbox-close"
+              type="button"
+              onClick={closeLightbox}
+            >
+              ×
+            </button>
+            <img
+              className="lightbox-img"
+              src={selectedImage.image}
+              alt={selectedImage.alt}
+            />
           </div>
         </div>
-      </section>
+      )}
 
       <section className="cta">
         <h2>Interested in Something Special?</h2>

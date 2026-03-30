@@ -5,8 +5,31 @@ import makingOrnaments from '../images/making-ornaments.png';
 import homeDecor from '../images/home-decor.png';
 import milestoneMemories from '../images/milestone-memories.png';
 import weddingDecor from '../images/wedding-decor.png';
+import WhatWeOffer from '../components/WhatWeOffer';
+import Map from '../components/Map';
 
 function About() {
+  const offers = [
+    {
+      id: 1,
+      image: homeDecor,
+      title: 'Custom Home Décor',
+      description: 'Personalized pieces designed to add warmth and character to your space.'
+    },
+    {
+      id: 2,
+      image: milestoneMemories,
+      title: 'Keepsakes & Gifts',
+      description: 'Meaningful creations perfect for weddings, babies, anniversaries, and holidays.'
+    },
+    {
+      id: 3,
+      image: weddingDecor,
+      title: 'Event Details',
+      description: 'Thoughtful touches that make your special occasions unforgettable.'
+    }
+  ];
+
   return (
     <main>
       <section className="hero">
@@ -51,59 +74,13 @@ function About() {
         </div>
       </section>
 
-      <section className="section center">
-        <div className="wrap">
-          <h2>What We Offer</h2>
-
-          <div className="grid-3">
-            <div className="card-item">
-              <div
-                className="card-img"
-                style={{ backgroundImage: `url(${homeDecor})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Custom Home Décor</h3>
-                <p>Personalized pieces designed to add warmth and character to your space.</p>
-              </div>
-            </div>
-
-            <div className="card-item">
-              <div
-                className="card-img"
-                style={{ backgroundImage: `url(${milestoneMemories})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Keepsakes & Gifts</h3>
-                <p>Meaningful creations perfect for weddings, babies, anniversaries, and holidays.</p>
-              </div>
-            </div>
-
-            <div className="card-item">
-              <div
-                className="card-img"
-                style={{ backgroundImage: `url(${weddingDecor})` }}
-              ></div>
-              <div className="card-bottom">
-                <h3>Event Details</h3>
-                <p>Thoughtful touches that make your special occasions unforgettable.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <WhatWeOffer offers={offers} />
 
       <section className="section center">
         <div className="wrap">
           <h2>Where We’re Located</h2>
           <p className="sub">Cina Designs & Events is proudly based in York, South Carolina.</p>
-
-          <div className="iframe-container">
-            <iframe
-              src="https://www.google.com/maps?q=York,South+Carolina&output=embed"
-              loading="lazy"
-              title="Map of York, South Carolina"
-            ></iframe>
-          </div>
+          <Map />
         </div>
       </section>
 

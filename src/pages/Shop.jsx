@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
+import OrderingDetails from '../components/OrderingDetails';
 import '../styles/Shop.css';
 
 import craftBackground from '../images/craft-background.png';
@@ -13,6 +14,24 @@ import cuttingBoards from '../images/cutting-boards.jpg';
 import firstDay from '../images/first-day.jpg';
 
 function Shop() {
+  const orderDetails = [
+    {
+      id: 1,
+      title: 'Personalization',
+      text: 'Add names, dates, colors, or special messages to most items.'
+    },
+    {
+      id: 2,
+      title: 'Processing Time',
+      text: 'Most custom orders are completed within 3–5 business days. Rush options may be available upon request.'
+    },
+    {
+      id: 3,
+      title: 'Packaging',
+      text: 'Gift-ready packaging available upon request for an additional fee.'
+    }
+  ];
+
   return (
     <main>
       <section className="hero">
@@ -122,31 +141,7 @@ function Shop() {
         </div>
       </section>
 
-      <section className="section">
-        <div className="wrap center">
-          <h2>Ordering Details</h2>
-
-          <div className="info-3">
-            <div className="info-box">
-              <strong>Personalization</strong>
-              <br />
-              Add names, dates, colors, or special messages to most items.
-            </div>
-
-            <div className="info-box">
-              <strong>Processing Time</strong>
-              <br />
-              Most custom orders are completed within 3–5 business days. Rush options may be available upon request.
-            </div>
-
-            <div className="info-box">
-              <strong>Packaging</strong>
-              <br />
-              Gift-ready packaging available upon request for an additional fee.
-            </div>
-          </div>
-        </div>
-      </section>
+      <OrderingDetails details={orderDetails} />
 
       <section className="cta">
         <div className="wrap">
