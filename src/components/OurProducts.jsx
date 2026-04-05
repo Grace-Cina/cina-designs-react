@@ -1,6 +1,9 @@
+
 import ProductPreviewCard from './ProductPreviewCard';
 
+
 function OurProducts({ products }) {
+  
   return (
     <section className="section">
       <div className="wrap">

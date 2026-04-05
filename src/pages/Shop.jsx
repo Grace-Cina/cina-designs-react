@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import OrderingDetails from '../components/OrderingDetails';
 import '../styles/Shop.css';
 
 import craftBackground from '../images/craft-background.png';
-import ornament from '../images/ornament.jpg';
-import wreathSash from '../images/zoomed-in-wreath-sash.jpg';
-import starwarsMilestone from '../images/starwars-milestone.jpg';
-import calendar from '../images/calendar.jpg';
-import woodenNurserySign from '../images/wooden-nursery-sign.jpg';
-import sweater from '../images/sweater.jpg';
-import cuttingBoards from '../images/cutting-boards.jpg';
-import firstDay from '../images/first-day.jpg';
 
 function Shop() {
+  const [products, setProducts] = useState([]);
+
   const orderDetails = [
     {
       id: 1,
@@ -31,6 +26,13 @@ function Shop() {
       text: 'Gift-ready packaging available upon request for an additional fee.'
     }
   ];
+
+  useEffect(() => {
+    fetch('https://cina-designs-server.onrender.com/api/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.log('Error loading products:', err));
+  }, []);
 
   return (
     <main>
@@ -58,85 +60,19 @@ function Shop() {
       <section className="section">
         <div className="wrap">
           <div className="grid-4">
-            <ProductCard
-              image={ornament}
-              title="Personalized Ornament"
-              price="$15.00"
-              category="Holiday Decor"
-              material="Wood and ribbon"
-              occasion="Christmas"
-              description="A custom ornament perfect for celebrating special holiday memories."
-            />
-
-            <ProductCard
-              image={wreathSash}
-              title="Custom Wreath Sash"
-              price="$20.00"
-              category="Home Decor"
-              material="Fabric"
-              occasion="Seasonal"
-              description="A personalized wreath sash that adds charm to your front door décor."
-            />
-
-            <ProductCard
-              image={starwarsMilestone}
-              title="Monthly Milestone Set"
-              price="$40.00"
-              category="Baby Keepsakes"
-              material="Wood"
-              occasion="Baby Milestones"
-              description="A themed monthly milestone set to capture each month of baby’s first year."
-            />
-
-            <ProductCard
-              image={calendar}
-              title="Acrylic Calendar"
-              price="$100.00"
-              category="Organization"
-              material="Acrylic"
-              occasion="Everyday Use"
-              description="A reusable acrylic calendar that keeps your schedule stylish and organized."
-            />
-
-            <ProductCard
-              image={woodenNurserySign}
-              title="Wooden Nursery Sign"
-              price="$85.00"
-              category="Nursery Decor"
-              material="Wood"
-              occasion="Baby Shower"
-              description="A custom wooden sign that adds a warm and personal touch to any nursery."
-            />
-
-            <ProductCard
-              image={sweater}
-              title="Hand Stitched Sweater"
-              price="$50.00"
-              category="Apparel"
-              material="Cotton blend"
-              occasion="Gift Giving"
-              description="A cozy hand stitched sweater customized for a thoughtful and unique gift."
-            />
-
-            <ProductCard
-              image={cuttingBoards}
-              title="Personalized Cutting Board"
-              price="$40.00"
-              category="Kitchen Decor"
-              material="Wood"
-              occasion="Wedding Gift"
-              description="A personalized cutting board that is both practical and beautiful for any kitchen."
-            />
-
-            <ProductCard
-              image={firstDay}
-              title="First Day Milestone Board"
-              price="$45.00"
-              category="School Keepsakes"
-              material="Wood and vinyl"
-              occasion="Back to School"
-              description="A milestone board made to celebrate and remember each first day of school."
-            />
+            {products.map((item) => (
+              <ProductCard
+                key={item._id}
+                id={item._id}
+                image={`https://cina-designs-server.onrender.com${item.image}`}
+                title={item.name}
+                price={item.price}
+                category={item.category}
+                material={item.material}
+                occasion={item.occasion}
+                description={item.description}
+              />
+            ))}
           </div>
         </div>
       </section>
