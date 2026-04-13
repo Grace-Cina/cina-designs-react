@@ -17,7 +17,9 @@ function AddProduct() {
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
 
+  // 🔹 Handle input changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -25,7 +27,23 @@ function AddProduct() {
     });
   };
 
-  // 🔹 CLIENT VALIDATION (must match Joi later)
+  // 🔹 Handle image upload + preview
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const previewURL = URL.createObjectURL(file);
+      setImagePreview(previewURL);
+
+      // Store image path (matches your server setup)
+      setFormData({
+        ...formData,
+        image: `/images/${file.name}`
+      });
+    }
+  };
+
+  // 🔹 Validation (matches Joi)
   const validate = () => {
     let newErrors = {};
 
@@ -44,6 +62,7 @@ function AddProduct() {
     return newErrors;
   };
 
+  // 🔹 Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,10 +86,10 @@ function AddProduct() {
 
       setSuccess(true);
 
-      // redirect to shop after 1 sec
+      // redirect after success
       setTimeout(() => {
         navigate('/shop');
-      }, 1000);
+      }, 1200);
 
     } catch (err) {
       console.error(err);
@@ -82,24 +101,67 @@ function AddProduct() {
       <form className="add-product-form" onSubmit={handleSubmit}>
         <h1>Add New Product</h1>
 
-        <input name="name" placeholder="Product Name" onChange={handleChange} />
+        <input
+          name="name"
+          placeholder="Product Name"
+          onChange={handleChange}
+        />
         {errors.name && <p className="error">{errors.name}</p>}
 
-        <input name="price" placeholder="Price" onChange={handleChange} />
+        <input
+          name="price"
+          placeholder="Price"
+          onChange={handleChange}
+        />
         {errors.price && <p className="error">{errors.price}</p>}
 
-        <input name="category" placeholder="Category" onChange={handleChange} />
-        <input name="material" placeholder="Material" onChange={handleChange} />
-        <input name="occasion" placeholder="Occasion" onChange={handleChange} />
+        <input
+          name="category"
+          placeholder="Category"
+          onChange={handleChange}
+        />
 
-        <textarea name="description" placeholder="Description" onChange={handleChange} />
+        <input
+          name="material"
+          placeholder="Material"
+          onChange={handleChange}
+        />
+
+        <input
+          name="occasion"
+          placeholder="Occasion"
+          onChange={handleChange}
+        />
+
+        <textarea
+          name="description"
+          placeholder="Description"
+          onChange={handleChange}
+        />
         {errors.description && <p className="error">{errors.description}</p>}
 
-        <input name="image" placeholder="Image path (ex: /images/item.jpg)" onChange={handleChange} />
+        {/* 🔥 IMAGE UPLOAD */}
+        <label className="file-upload">
+          Choose Image
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+        </label>
+
+        {/* 🔥 IMAGE PREVIEW */}
+        {imagePreview && (
+          <div className="image-preview">
+            <img src={imagePreview} alt="Preview" />
+          </div>
+        )}
 
         <button type="submit">Add Product</button>
 
-        {success && <p className="success">Product added successfully!</p>}
+        {success && (
+          <p className="success">Product added successfully!</p>
+        )}
       </form>
     </main>
   );
