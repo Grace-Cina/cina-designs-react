@@ -8,6 +8,7 @@ import craftBackground from '../images/craft-background.png';
 
 function Shop() {
   const [products, setProducts] = useState([]);
+  const isAdmin = true; // change later
 
   const orderDetails = [
     {
@@ -36,6 +37,7 @@ function Shop() {
 
   return (
     <main>
+      {/* HERO */}
       <section className="hero">
         <div
           className="hero-bg"
@@ -51,12 +53,25 @@ function Shop() {
       </section>
 
       <section className="toolbar">
-        <div className="toolbar-inner">
-          <div>All Products</div>
-          <div>Filter ▼</div>
-        </div>
-      </section>
+  <div className="toolbar-inner">
+    <div>All Products</div>
 
+    {/* RIGHT SIDE */}
+    <div className="toolbar-actions">
+      <div className="filter">Filter ▼</div>
+
+      {isAdmin && (
+        <Link to="/add-product" className="add-product-btn">
+          + Add Product
+        </Link>
+      )}
+    </div>
+  </div>
+</section>
+
+      
+
+      {/* PRODUCT GRID */}
       <section className="section">
         <div className="wrap">
           <div className="grid-4">
@@ -77,8 +92,10 @@ function Shop() {
         </div>
       </section>
 
+      {/* ORDER DETAILS */}
       <OrderingDetails details={orderDetails} />
 
+      {/* CTA */}
       <section className="cta">
         <div className="wrap">
           <h2>Let’s Create Something Special</h2>

@@ -1,0 +1,109 @@
+:root {
+  --bg: #f7f1ec;
+  --panel: #f7f1ec;
+  --text: #6b4f4f;
+  --pink: #f4c2d7;
+  --heading: #d9a5b3;
+  --border: rgba(217, 165, 179, 0.45);
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
+}
+
+/* PAGE */
+.add-product-page {
+  background: var(--bg);
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* FORM CARD */
+.add-product-form {
+  width: 100%;
+  max-width: 520px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+
+/* TITLE */
+.add-product-form h1 {
+  text-align: center;
+  color: var(--heading);
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+/* INPUTS + TEXTAREA */
+.add-product-form input,
+.add-product-form textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 13px;
+  color: var(--text);
+  transition: 0.2s ease;
+}
+
+/* TEXTAREA FIX */
+.add-product-form textarea {
+  border-radius: 16px;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* FOCUS */
+.add-product-form input:focus,
+.add-product-form textarea:focus {
+  outline: none;
+  border-color: var(--heading);
+  box-shadow: 0 0 0 2px rgba(217, 165, 179, 0.2);
+}
+
+/* BUTTON */
+.add-product-form button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--pink);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.add-product-form button:hover {
+  background: #eab0c8;
+  transform: translateY(-1px);
+}
+
+/* ERROR */
+.error {
+  color: #b23a48;
+  font-size: 12px;
+  margin: 4px 0 8px;
+  text-align: left;
+}
+
+/* SUCCESS */
+.success {
+  color: #3a7d44;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* SPACING */
+.add-product-form input:not(:last-child),
+.add-product-form textarea {
+  margin-bottom: 14px;
+}

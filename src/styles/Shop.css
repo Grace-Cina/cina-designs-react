@@ -31,6 +31,7 @@ h3 {
   margin: 0 auto;
 }
 
+/* HERO */
 .hero {
   position: relative;
   min-height: 360px;
@@ -77,6 +78,7 @@ h3 {
   font-size: 16px;
 }
 
+/* SECTIONS */
 .section {
   padding: 42px 0;
 }
@@ -92,6 +94,7 @@ h3 {
   color: var(--text);
 }
 
+/* GRID */
 .grid-4 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -99,6 +102,7 @@ h3 {
   margin-top: 22px;
 }
 
+/* TOOLBAR */
 .toolbar {
   background: var(--pink);
   border-top: 1px solid var(--border);
@@ -116,6 +120,42 @@ h3 {
   font-weight: 800;
 }
 
+/* RIGHT SIDE (filter + add button) */
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* FILTER */
+.filter {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(244, 194, 215, 0.6);
+}
+
+/* ADD PRODUCT BUTTON (UPDATED 🔥) */
+.add-product-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--pink);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.add-product-btn:hover {
+  background: #eab0c8;
+  transform: translateY(-1px);
+}
+
+/* INFO SECTION */
 .info-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -133,6 +173,7 @@ h3 {
   font-size: 13px;
 }
 
+/* BUTTONS */
 .btn {
   display: inline-block;
   text-decoration: none;
@@ -143,6 +184,7 @@ h3 {
   background: var(--pink);
   color: var(--text);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
 }
 
 .btn:hover {
@@ -158,6 +200,7 @@ h3 {
   flex-wrap: wrap;
 }
 
+/* CTA */
 .cta {
   padding: 44px 0 36px;
   text-align: center;
@@ -172,6 +215,7 @@ h3 {
   margin-top: 0;
 }
 
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .grid-4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -191,6 +235,8 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+/* CARD TEXT FIX */
 .card-bottom p {
   margin: 8px 0;
   font-size: 13px;
