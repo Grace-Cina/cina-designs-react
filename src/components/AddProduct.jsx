@@ -140,7 +140,7 @@ function AddProduct() {
         />
         {errors.description && <p className="error">{errors.description}</p>}
 
-        {/* 🔥 IMAGE UPLOAD */}
+        {/* IMAGE UPLOAD */}
         <label className="file-upload">
           Choose Image
           <input
@@ -150,7 +150,7 @@ function AddProduct() {
           />
         </label>
 
-        {/* 🔥 IMAGE PREVIEW */}
+        {/* IMAGE PREVIEW */}
         {imagePreview && (
           <div className="image-preview">
             <img src={imagePreview} alt="Preview" />

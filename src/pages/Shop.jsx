@@ -8,7 +8,7 @@ import craftBackground from '../images/craft-background.png';
 
 function Shop() {
   const [products, setProducts] = useState([]);
-  const isAdmin = true; // change later
+ // const isAdmin = true; // change later
 
   const orderDetails = [
     {
