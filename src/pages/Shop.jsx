@@ -60,11 +60,9 @@ function Shop() {
     <div className="toolbar-actions">
       <div className="filter">Filter ▼</div>
 
-      {isAdmin && (
-        <Link to="/add-product" className="add-product-btn">
-          + Add Product
-        </Link>
-      )}
+     <Link to="/add-product" className="add-product-btn">
+       + Add Product
+    </Link>
     </div>
   </div>
 </section>
