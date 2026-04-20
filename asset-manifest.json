@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cina-designs-react/static/css/main.284f288c.css",
-    "main.js": "/cina-designs-react/static/js/main.231a50b8.js",
+    "main.js": "/cina-designs-react/static/js/main.25a29868.js",
     "static/media/craft-background.png": "/cina-designs-react/static/media/craft-background.ee26ba49897f685a0f2f.png",
     "static/media/about-hero.png": "/cina-designs-react/static/media/about-hero.c84b074a9732fe1dcbca.png",
     "static/media/milestone-memories.png": "/cina-designs-react/static/media/milestone-memories.b94252abf7cf8571f905.png",
@@ -23,10 +23,10 @@
     "static/media/monthly-milestones.jpg": "/cina-designs-react/static/media/monthly-milestones.b6bea8838f7e02cc2ffe.jpg",
     "index.html": "/cina-designs-react/index.html",
     "main.284f288c.css.map": "/cina-designs-react/static/css/main.284f288c.css.map",
-    "main.231a50b8.js.map": "/cina-designs-react/static/js/main.231a50b8.js.map"
+    "main.25a29868.js.map": "/cina-designs-react/static/js/main.25a29868.js.map"
   },
   "entrypoints": [
     "static/css/main.284f288c.css",
-    "static/js/main.231a50b8.js"
+    "static/js/main.25a29868.js"
   ]
 }
