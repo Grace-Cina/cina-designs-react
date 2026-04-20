@@ -81,4 +81,41 @@
 .product-card {
   position: relative;
 }
+/* BUTTON GROUP */
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
 
+/* BASE BUTTON STYLE (matches your pills) */
+.edit-btn,
+.delete-btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--pink);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+/* HOVER EFFECT (same vibe as your other buttons) */
+.edit-btn:hover,
+.delete-btn:hover {
+  background: #eab0c8;
+  transform: translateY(-1px);
+}
+
+/* OPTIONAL: make delete slightly different but still on-theme */
+.delete-btn {
+  background: #f1b5c4;
+}
+
+.delete-btn:hover {
+  background: #e89aaa;
+}
