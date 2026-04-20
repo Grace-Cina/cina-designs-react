@@ -15,30 +15,38 @@ function ProductCard({
 }) {
   return (
     <article className="product-card">
-      <img src={image} alt={title} className="product-card-image" />
 
-      <div className="product-card-content">
-        <h3>{title}</h3>
-        <p className="price">{price}</p>
-        <p><strong>Category:</strong> {category}</p>
-        <p><strong>Material:</strong> {material}</p>
-        <p><strong>Occasion:</strong> {occasion}</p>
-        <p>{description}</p>
+      {/* ✅ CLICKABLE AREA */}
+      <Link to={`/products/${id}`} className="card-link">
+        <img src={image} alt={title} className="product-card-image" />
 
-        <div className="btn-group">
-          <Link to={`/products/${id}`} className="details-btn">
-            View Details
-          </Link>
-
-          <button onClick={() => onEdit(id)} className="edit-btn">
-            Edit
-          </button>
-
-          <button onClick={() => onDelete(id)} className="delete-btn">
-            Delete
-          </button>
+        <div className="product-card-content">
+          <h3>{title}</h3>
+          <p className="price">{price}</p>
+          <p><strong>Category:</strong> {category}</p>
+          <p><strong>Material:</strong> {material}</p>
+          <p><strong>Occasion:</strong> {occasion}</p>
+          <p>{description}</p>
         </div>
+      </Link>
+
+      {/* ✅ BUTTONS OUTSIDE LINK */}
+      <div className="btn-group">
+        <button
+          onClick={() => onEdit(id)}
+          className="edit-btn"
+        >
+          Edit
+        </button>
+
+        <button
+          onClick={() => onDelete(id)}
+          className="delete-btn"
+        >
+          Delete
+        </button>
       </div>
+
     </article>
   );
 }
