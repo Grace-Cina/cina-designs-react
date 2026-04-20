@@ -8,6 +8,20 @@
   --shadow: 0 14px 34px rgba(0, 0, 0, 0.10);
 }
 
+/* 🔥 FIX LINK UNDERLINE ISSUE */
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-card-link * {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 /* CARD */
 .product-card {
   background: var(--panel);
@@ -40,7 +54,6 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 /* TITLE */
@@ -68,34 +81,12 @@
   font-size: 13px;
 }
 
-/* VIEW DETAILS BUTTON */
-.details-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 14px;
-  font-size: 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--pink);
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.25s ease;
-}
-
-.details-btn:hover {
-  background: #eab0c8;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* BUTTON GROUP */
+/* BUTTON GROUP (FIXED POSITIONING) */
 .btn-group {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: auto; /* pushes buttons to bottom */
-  padding-top: 10px;
+  margin-top: 12px;
   flex-wrap: wrap;
 }
 
@@ -136,7 +127,12 @@
   box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
-/* RESPONSIVE TOUCH */
+/* NICE HOVER EFFECT INSTEAD OF UNDERLINE */
+.product-card-link:hover h3 {
+  color: var(--heading);
+}
+
+/* RESPONSIVE */
 @media (max-width: 600px) {
   .product-card-content {
     padding: 12px;
@@ -147,8 +143,7 @@
   }
 
   .edit-btn,
-  .delete-btn,
-  .details-btn {
+  .delete-btn {
     font-size: 11px;
     padding: 7px 10px;
   }

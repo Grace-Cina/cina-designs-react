@@ -15,9 +15,7 @@ function ProductCard({
 }) {
   return (
     <article className="product-card">
-
-      {/* ✅ CLICKABLE AREA */}
-      <Link to={`/products/${id}`} className="card-link">
+      <Link to={`/products/${id}`} className="product-card-link">
         <img src={image} alt={title} className="product-card-image" />
 
         <div className="product-card-content">
@@ -27,26 +25,30 @@ function ProductCard({
           <p><strong>Material:</strong> {material}</p>
           <p><strong>Occasion:</strong> {occasion}</p>
           <p>{description}</p>
+
+          <div className="btn-group">
+            <button
+              onClick={(e) => {
+                e.preventDefault(); // 🚨 prevents link navigation
+                onEdit(id);
+              }}
+              className="edit-btn"
+            >
+              Edit
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault(); // 🚨 prevents link navigation
+                onDelete(id);
+              }}
+              className="delete-btn"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </Link>
-
-      {/* ✅ BUTTONS OUTSIDE LINK */}
-      <div className="btn-group">
-        <button
-          onClick={() => onEdit(id)}
-          className="edit-btn"
-        >
-          Edit
-        </button>
-
-        <button
-          onClick={() => onDelete(id)}
-          className="delete-btn"
-        >
-          Delete
-        </button>
-      </div>
-
     </article>
   );
 }
