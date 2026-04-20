@@ -8,7 +8,7 @@ import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
 import AddProduct from './components/AddProduct';
-import EditProduct from "./pages/EditProduct";
+import EditProduct from "./components/EditProduct";
 
 function App() {
   return (
