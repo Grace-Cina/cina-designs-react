@@ -9,6 +9,8 @@ import craftBackground from '../images/craft-background.png';
 function Shop() {
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   const orderDetails = [
@@ -31,29 +33,49 @@ function Shop() {
 
   // 🔹 GET PRODUCTS
   useEffect(() => {
-    fetch('https://cina-designs-server.onrender.com/api/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.log('Error loading products:', err));
+    const loadProducts = async () => {
+      try {
+        const res = await fetch('https://cina-designs-server.onrender.com/api/products');
+
+        if (!res.ok) throw new Error("Failed to fetch");
+
+        const data = await res.json();
+        setProducts(data);
+      } catch (err) {
+        console.error(err);
+        setMessage("Failed to load products ❌");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
   }, []);
 
-  // 🔹 DELETE
+  // 🔹 DELETE PRODUCT (FIXED)
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this product?");
+    if (!confirmDelete) return;
+
     try {
       const res = await fetch(
         `https://cina-designs-server.onrender.com/api/products/${id}`,
         { method: "DELETE" }
       );
 
-      if (res.status === 200) {
-        setProducts(products.filter((p) => p._id !== id));
-        setMessage("Product deleted successfully ✅");
-      } else {
-        setMessage("Failed to delete ❌");
-      }
+      if (!res.ok) throw new Error("Delete failed");
+
+      // ✅ FIX: use functional update
+      setProducts(prev => prev.filter((p) => p._id !== id));
+
+      setMessage("Product deleted successfully ✅");
+
+      // optional: auto-clear message
+      setTimeout(() => setMessage(""), 2000);
+
     } catch (err) {
       console.error(err);
-      setMessage("Server error ❌");
+      setMessage("Server error while deleting ❌");
     }
   };
 
@@ -97,28 +119,37 @@ function Shop() {
       {/* STATUS MESSAGE */}
       {message && <p className="status-msg">{message}</p>}
 
+      {/* LOADING STATE */}
+      {loading && <p className="status-msg">Loading products...</p>}
+
       {/* PRODUCT GRID */}
-      <section className="section">
-        <div className="wrap">
-          <div className="grid-4">
-            {products.map((item) => (
-              <ProductCard
-                key={item._id}
-                id={item._id}
-                image={`https://cina-designs-server.onrender.com${item.image}`}
-                title={item.name}
-                price={item.price}
-                category={item.category}
-                material={item.material}
-                occasion={item.occasion}
-                description={item.description}
-                onDelete={handleDelete}
-                onEdit={handleEdit}
-              />
-            ))}
+      {!loading && (
+        <section className="section">
+          <div className="wrap">
+            <div className="grid-4">
+              {products.length === 0 ? (
+                <p>No products found.</p>
+              ) : (
+                products.map((item) => (
+                  <ProductCard
+                    key={item._id}
+                    id={item._id}
+                    image={`https://cina-designs-server.onrender.com${item.image}`}
+                    title={item.name}
+                    price={item.price}
+                    category={item.category}
+                    material={item.material}
+                    occasion={item.occasion}
+                    description={item.description}
+                    onDelete={handleDelete}
+                    onEdit={handleEdit}
+                  />
+                ))
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ORDER DETAILS */}
       <OrderingDetails details={orderDetails} />
