@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../styles/Form.css"; // optional if you have styles
+import "../styles/AddProduct.css"; // optional if you have styles
 
 function EditProduct() {
   const { id } = useParams();
