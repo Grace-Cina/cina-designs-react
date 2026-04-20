@@ -8,6 +8,7 @@ import Gallery from './pages/Gallery';
 import Contact from './pages/Contact';
 import ProductDetails from './pages/ProductDetails';
 import AddProduct from './components/AddProduct';
+import EditProduct from "./pages/EditProduct";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/products/:id" element={<ProductDetails />} />
         <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/edit-product/:id" element={<EditProduct />} />
       </Routes>
       <Footer />
     </div>
