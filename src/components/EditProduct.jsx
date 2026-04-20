@@ -20,8 +20,8 @@ function EditProduct() {
   // 🔹 LOAD PRODUCT
   useEffect(() => {
     fetch(`https://cina-designs-server.onrender.com/api/products/${id}`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setForm({
           name: data.name || "",
           price: data.price || "",
@@ -34,12 +34,12 @@ function EditProduct() {
       .catch(() => setMessage("Failed to load product ❌"));
   }, [id]);
 
-  // 🔹 HANDLE INPUT
+  // 🔹 HANDLE INPUT CHANGE
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // 🔹 VALIDATION (FIXED)
+  // 🔹 VALIDATION (MATCHES YOUR BACKEND)
   const validate = () => {
     if (!form.name.trim()) return "Name is required";
     if (!form.price.trim()) return "Price is required";
@@ -47,7 +47,7 @@ function EditProduct() {
     return null;
   };
 
-  // 🔹 SUBMIT
+  // 🔹 SUBMIT EDIT (FIXED)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,21 +57,37 @@ function EditProduct() {
       return;
     }
 
+    // 🔥 FIX: ensure price is a STRING like "$45.00"
+    const formattedPrice = form.price.startsWith("$")
+      ? form.price
+      : `$${form.price}`;
+
+    const updatedProduct = {
+      ...form,
+      price: formattedPrice
+    };
+
     try {
       const res = await fetch(
         `https://cina-designs-server.onrender.com/api/products/${id}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form)
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(updatedProduct)
         }
       );
 
+      const data = await res.json();
+
       if (res.ok) {
         setMessage("Product updated successfully ✅");
-        setTimeout(() => navigate("/shop"), 1000);
+
+        setTimeout(() => {
+          navigate("/shop");
+        }, 1000);
       } else {
-        const data = await res.json();
         setMessage(data.error || "Update failed ❌");
       }
     } catch (err) {
@@ -85,14 +101,51 @@ function EditProduct() {
       <h2>Edit Product</h2>
 
       <form onSubmit={handleSubmit} className="form">
-        <input name="name" value={form.name} onChange={handleChange} placeholder="Product Name" />
-        <input name="price" value={form.price} onChange={handleChange} placeholder="Price (ex: $25.00)" />
-        <input name="category" value={form.category} onChange={handleChange} placeholder="Category" />
-        <input name="material" value={form.material} onChange={handleChange} placeholder="Material" />
-        <input name="occasion" value={form.occasion} onChange={handleChange} placeholder="Occasion" />
-        <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description" />
+        <input
+          name="name"
+          placeholder="Product Name"
+          value={form.name}
+          onChange={handleChange}
+        />
 
-        <button type="submit" className="btn">Update Product</button>
+        <input
+          name="price"
+          placeholder="Price (ex: $45.00)"
+          value={form.price}
+          onChange={handleChange}
+        />
+
+        <input
+          name="category"
+          placeholder="Category"
+          value={form.category}
+          onChange={handleChange}
+        />
+
+        <input
+          name="material"
+          placeholder="Material"
+          value={form.material}
+          onChange={handleChange}
+        />
+
+        <input
+          name="occasion"
+          placeholder="Occasion"
+          value={form.occasion}
+          onChange={handleChange}
+        />
+
+        <textarea
+          name="description"
+          placeholder="Description"
+          value={form.description}
+          onChange={handleChange}
+        />
+
+        <button type="submit" className="btn">
+          Update Product
+        </button>
       </form>
 
       {message && <p className="status-msg">{message}</p>}
